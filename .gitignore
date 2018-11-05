@@ -1,0 +1,4 @@
+*.pyc
+/.mona/
+/pub/
+/calcs/
