@@ -1,5 +1,5 @@
-from mona import Rule
-from mona.files import File, add_source, file_collection
+from mona import Mona, Rule
+from mona.files import file_from_path, file_collection
 from mona.sci.aims import Aims, SpeciesDefaults, parse_aims
 from mona.sci.tex import jinja_tex
 
@@ -9,6 +9,8 @@ import numpy as np
 
 mpl.rc("font", family="serif", serif="STIXGeneral")
 mpl.rc("mathtext", fontset="stix")
+
+app = Mona()
 
 xc = "PBE"
 conv_threshold = 2e-5
@@ -34,6 +36,7 @@ async def converged_energy(inp, enes):
     return converged_energy(inp, [*enes, ene])
 
 
+@app.entry('main')
 @Rule
 async def main():
     defaults = {
@@ -57,8 +60,9 @@ async def main():
     }
 
 
+@app.entry('pub')
 @Rule
-async def pub():
+async def publication():
     energies = main()
     fig = figure_file(energies["Kr"])
     tex = tex_file("krypton", energies["Kr"], fig)
@@ -75,10 +79,10 @@ async def figure_file(energies):
     plt.ticklabel_format(useOffset=False)
     filename = "conv.pdf"
     plt.savefig(filename, bbox_inches="tight")
-    return File.from_path(filename, keep=False)
+    return file_from_path(filename, keep=False)
 
 
-@add_source("paper.tex.in")
+@app.add_source("paper.tex.in")
 @Rule
 async def tex_file(elem, energies, figfile, template):
     tex = jinja_tex(
@@ -95,4 +99,4 @@ async def tex_file(elem, energies, figfile, template):
     texfile = template.stem
     with open(texfile, "w") as f:
         f.write(tex)
-    return File.from_path(texfile, keep=False)
+    return file_from_path(texfile, keep=False)
