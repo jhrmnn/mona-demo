@@ -25,17 +25,6 @@ aims = Aims()
 SpeciesDefaults(add_radial_base)(aims)
 
 
-@Rule
-async def converged_energy(inp, enes):
-    if len(enes) >= 2 and abs(enes[-1] - enes[-2]) < conv_threshold:
-        return np.array(enes)
-    if len(enes) > 0:
-        inp["radial_base_add"] += 20
-    label = f'/calcs/{inp["atoms"][0][0]}/{inp["radial_base_add"]}'
-    ene = parse_aims(aims(**inp, label=label))["energy"]
-    return converged_energy(inp, [*enes, ene])
-
-
 @app.entry('main')
 @Rule
 async def main():
@@ -58,6 +47,17 @@ async def main():
         )
         for elem in "He Ne Ar Kr".split()
     }
+
+
+@Rule
+async def converged_energy(inp, enes):
+    if len(enes) >= 2 and abs(enes[-1] - enes[-2]) < conv_threshold:
+        return np.array(enes)
+    if len(enes) > 0:
+        inp["radial_base_add"] += 20
+    label = f'/calcs/{inp["atoms"][0][0]}/{inp["radial_base_add"]}'
+    ene = parse_aims(aims(**inp, label=label))["energy"]
+    return converged_energy(inp, [*enes, ene])
 
 
 @app.entry('pub')
