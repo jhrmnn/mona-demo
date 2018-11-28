@@ -1,0 +1,16 @@
+Arpeggio==1.9.0
+Click==7.0
+cycler==0.10.0
+graphviz==0.10.1
+Jinja2==2.10
+kiwisolver==1.0.1
+MarkupSafe==1.1.0
+matplotlib==3.0.2
+mona==0.2.4
+numpy==1.15.4
+pyparsing==2.3.0
+python-dateutil==2.7.5
+six==1.11.0
+textX==1.5.2
+toml==0.9.6
+typing-extensions==3.6.6
