@@ -4,6 +4,7 @@
 \usepackage{stix}
 \usepackage{booktabs}
 \usepackage{siunitx}
+\usepackage{hyperref}
 
 \title{Mona Demo}
 
@@ -30,5 +31,9 @@ Step & {$(\text{Energy}/\si{\hartree}+<< -offset >>)/\num{e-3}$} \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\begin{thebibliography}{1}
+\bibitem{git} Git repository. URL: \href{https://github.com/azag0/mona-demo}{https://github.com/azag0/mona-demo}
+\end{thebibliography}
 
 \end{document}
