@@ -12,6 +12,8 @@
 
 \maketitle
 
+This project \cite{git} converges total energies of rare-gas atoms in FHI-aims with respect to the number of radial grid points.
+
 The << element >> calculation with << xc >> functional converged in << energies|length >> steps to within \SI{<< threshold >>}{\hartree}.
 
 \begin{figure}[h!]
