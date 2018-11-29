@@ -1,5 +1,5 @@
 from mona import Mona, Rule
-from mona.files import file_from_path, file_collection
+from mona.files import File, file_collection
 from mona.sci.aims import Aims, SpeciesDefaults, parse_aims
 from mona.sci.tex import jinja_tex
 
@@ -79,7 +79,7 @@ async def figure_file(energies):
     plt.ticklabel_format(useOffset=False)
     filename = "conv.pdf"
     plt.savefig(filename, bbox_inches="tight")
-    return file_from_path(filename, keep=False)
+    return File.from_path(filename, keep=False)
 
 
 @app.add_source("paper.tex.in")
@@ -99,4 +99,4 @@ async def tex_file(elem, energies, figfile, template):
     texfile = template.stem
     with open(texfile, "w") as f:
         f.write(tex)
-    return file_from_path(texfile, keep=False)
+    return File.from_path(texfile, keep=False)
