@@ -4,12 +4,12 @@ This is a demo project for the calculation framework [Mona](https://github.com/a
 
 In `PATH`:
 
-- `run_aims`: Runs FHI-aims, the executable may be specified by the `AIMS` environment variable.
+- `mona_aims`: Runs FHI-aims, the executable may be specified by the `MONA_AIMS` environment variable.
 - `aims-mona-demo`: FHI-aims executable, version 181110.
 
-Miscellaneous:
+Environment variables:
 
-- `<path to aims-mona-demo>/../aimsfiles` contains the `aimsfiles` repository.
+- `AIMS_SPECIES_DEFAULTS` points to the `species_defaults` directory.
 
 ### Instructions
 

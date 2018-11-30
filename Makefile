@@ -1,5 +1,5 @@
 all:
-	mona run pub -P
+	mona run pub -P -j1
 	mona checkout -p /pub
 	latexmk -cd -pdf pub/paper.tex
 
